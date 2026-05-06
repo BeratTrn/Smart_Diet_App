@@ -1,6 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_smart_diet_app/pages/forgot_password_page.dart';
-import 'package:flutter_smart_diet_app/pages/sign_page.dart';
+import 'package:flutter_smart_diet_app/l10n/app_localizations.dart';
+import 'package:flutter_smart_diet_app/pages/Auth/forgot_password_page.dart';
+import 'package:flutter_smart_diet_app/pages/Auth/sign_page.dart';
+import 'package:flutter_smart_diet_app/pages/home_page.dart';
 import 'package:flutter_smart_diet_app/utils/constans.dart';
 
 class LoginPage extends StatefulWidget {
@@ -11,9 +15,75 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  late FirebaseAuth auth;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  bool isPasswordVisible = false;
+  bool _obscurePassword = true;
+
+  @override
+  void initState() {
+    super.initState();
+    auth = FirebaseAuth.instance;
+  }
+
+  void loginUserEmailAndPassword() async {
+    try {
+      final userCredential = await auth.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+
+      if (!userCredential.user!.emailVerified) {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Lütfen e-posta adresinizi doğrulayın."),
+          ),
+        );
+        return;
+      }
+
+      final uid = userCredential.user!.uid;
+
+      final userDoc =
+          await FirebaseFirestore.instance.collection('users').doc(uid).get();
+
+      if (!userDoc.exists) {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+              "Kullanıcı verisi bulunamadı. Lütfen tekrar kayıt olun.",
+            ),
+          ),
+        );
+        return;
+      }
+
+      if (!mounted) return;
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const HomePage()),
+      );
+    } on FirebaseAuthException catch (e) {
+      String message = switch (e.code) {
+        'user-not-found' => "Kullanıcı bulunamadı.",
+        'wrong-password' => "Şifre yanlış.",
+        'invalid-email' => "Geçersiz e-posta.",
+        _ => "Hata: ${e.message}",
+      };
+
+      if (!mounted) return;
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(message)));
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Login sırasında bilinmeyen hata: $e")),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +104,8 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const SizedBox(height: 16),
                 Text(
-                  'Akıllı Diyet',
+                  AppLocalizations.of(context)!.smartDiet,
+
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 32,
@@ -54,12 +125,13 @@ class _LoginPageState extends State<LoginPage> {
                     controller: emailController,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
-                      hintText: 'E-posta',
-                      hintStyle: TextStyle(color: Colors.grey.shade500),
-                      prefixIcon: Icon(
-                        Icons.email_outlined,
-                        color: MyAppColors.primaryColor,
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide(color: MyAppColors.primaryColor),
                       ),
+                      hintText: AppLocalizations.of(context)!.email,
+                      hintStyle: TextStyle(color: Colors.grey.shade500),
+                      prefixIcon: MyAppIcons.mailIcon,
                       border: InputBorder.none,
                       contentPadding: const EdgeInsets.symmetric(
                         horizontal: 16,
@@ -78,22 +150,27 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   child: TextField(
                     controller: passwordController,
+                    obscureText: _obscurePassword,
                     decoration: InputDecoration(
-                      hintText: 'Şifre',
-                      hintStyle: TextStyle(color: Colors.grey.shade500),
-                      prefixIcon: Icon(
-                        Icons.lock_outline,
-                        color: MyAppColors.primaryColor,
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide(color: MyAppColors.primaryColor),
                       ),
-                      // suffixIcon: IconButton(
-                      //   icon: Icon(
-                      //     controller.isPasswordVisible.value
-                      //         ? Icons.visibility
-                      //         : Icons.visibility_off,
-                      //     color: Colors.blue.shade800,
-                      //   ),
-                      //   onPressed: controller.togglePasswordVisibility,
-                      // ),
+                      hintText: AppLocalizations.of(context)!.password,
+                      hintStyle: TextStyle(color: Colors.grey.shade500),
+                      prefixIcon: MyAppIcons.lockIcon,
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          color: MyAppColors.primaryColor,
+                          _obscurePassword
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                        ),
+                        onPressed:
+                            () => setState(
+                              () => _obscurePassword = !_obscurePassword,
+                            ),
+                      ),
                       border: InputBorder.none,
                       contentPadding: const EdgeInsets.symmetric(
                         horizontal: 16,
@@ -134,7 +211,8 @@ class _LoginPageState extends State<LoginPage> {
                         );
                       },
                       child: Text(
-                        'Şifremi unuttum',
+                        AppLocalizations.of(context)!.iforgotmypassword,
+
                         style: TextStyle(
                           color: MyAppColors.primaryColor,
                           fontSize: 14,
@@ -147,7 +225,9 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 24),
 
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    loginUserEmailAndPassword();
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: MyAppColors.primaryColor,
                     foregroundColor: MyAppColors.backgroundColor,
@@ -157,8 +237,9 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     elevation: 2,
                   ),
-                  child: const Text(
-                    'Giriş Yap',
+                  child: Text(
+                    AppLocalizations.of(context)!.login,
+
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -172,8 +253,11 @@ class _LoginPageState extends State<LoginPage> {
                     );
                   },
                   child: Text(
-                    'Hesabın yok mu? Kayıt ol',
-                    style: TextStyle(color: MyAppColors.primaryColor, fontSize: 16),
+                    AppLocalizations.of(context)!.dontthaveanaccountSignup,
+                    style: TextStyle(
+                      color: MyAppColors.primaryColor,
+                      fontSize: 16,
+                    ),
                   ),
                 ),
               ],

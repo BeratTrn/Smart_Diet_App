@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 
+Map<String, Map<String, List<Map<String, dynamic>>>> localMealStorage = {};
+
 class MyAppColors {
   static Color primaryColor = Colors.blue.shade800;
-  // static Color secondaryColor = Color(0xFF03DAC6);
   static Color backgroundColor = Colors.white;
 }
 
 class MyAppIcons {
-  static Icon backIcon = Icon(
-    Icons.arrow_back,
-    color: MyAppColors.primaryColor,
-  );
+  static Icon breakfast = Icon(Icons.breakfast_dining, color: Colors.orange);
+  static Icon lunch = Icon(Icons.lunch_dining, color: Colors.orange);
+  static Icon dinner = Icon(Icons.dinner_dining, color: Colors.orange);
+  static Icon snack = Icon(Icons.restaurant, color: Colors.orange);
+  static Icon backIcon = Icon(Icons.arrow_back_ios);
   static Icon forwardIcon = Icon(
-    Icons.arrow_forward,
+    Icons.arrow_forward_ios,
     color: MyAppColors.primaryColor,
   );
   static Icon closeIcon = Icon(Icons.close, color: MyAppColors.primaryColor);
@@ -20,6 +22,14 @@ class MyAppIcons {
   static Icon errorIcon = Icon(Icons.error, color: MyAppColors.primaryColor);
   static Icon warningIcon = Icon(
     Icons.warning,
+    color: MyAppColors.primaryColor,
+  );
+  static Icon statsIcon = Icon(
+    Icons.bar_chart,
+    color: MyAppColors.primaryColor,
+  );
+  static Icon waterIcon = Icon(
+    Icons.water_drop,
     color: MyAppColors.primaryColor,
   );
   static Icon infoIcon = Icon(Icons.info, color: MyAppColors.primaryColor);
@@ -76,7 +86,7 @@ class MyAppIcons {
     Icons.notifications,
     color: MyAppColors.primaryColor,
   );
-  static Icon logoutIcon = Icon(Icons.logout, color: MyAppColors.primaryColor);
+  static Icon logoutIcon = Icon(Icons.logout, color: Colors.red);
   static Icon loginIcon = Icon(Icons.login, color: MyAppColors.primaryColor);
   static Icon registerIcon = Icon(
     Icons.app_registration,

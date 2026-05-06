@@ -1,5 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_smart_diet_app/pages/login_page.dart';
+import 'package:flutter_smart_diet_app/l10n/app_localizations.dart';
+import 'package:flutter_smart_diet_app/pages/Auth/email_verification_page.dart';
+import 'package:flutter_smart_diet_app/pages/Auth/login_page.dart';
+import 'package:flutter_smart_diet_app/utils/constans.dart';
 
 class SignPage extends StatefulWidget {
   const SignPage({super.key});
@@ -9,6 +14,8 @@ class SignPage extends StatefulWidget {
 }
 
 class _SignPageState extends State<SignPage> {
+  late FirebaseAuth auth;
+
   final emailController = TextEditingController();
   final nameController = TextEditingController();
   final surnameController = TextEditingController();
@@ -23,6 +30,71 @@ class _SignPageState extends State<SignPage> {
   final genderController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    auth = FirebaseAuth.instance;
+  }
+
+  Future<void> _signUp() async {
+    if (passwordController.text != confirmPasswordController.text) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("Şifreler uyuşmuyor")));
+      return;
+    }
+
+    try {
+      UserCredential credential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+            email: emailController.text.trim(),
+            password: passwordController.text.trim(),
+          );
+
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(credential.user!.uid)
+          .set({
+            'name': nameController.text.trim(),
+            'surname': surnameController.text.trim(),
+            'email': emailController.text.trim(),
+            'age': ageController.text.trim(),
+            'height': heightController.text.trim(),
+            'weight': weightController.text.trim(),
+            'waist': waistController.text.trim(),
+            'neck': neckController.text.trim(),
+            'hip': hipController.text.trim(),
+            'gender': genderController.text.trim(),
+            'createdAt': FieldValue.serverTimestamp(),
+          });
+
+      await credential.user!.sendEmailVerification();
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder:
+              (_) => EmailVerificationScreen(
+                name: nameController.text.trim(),
+                surname: surnameController.text.trim(),
+                email: emailController.text.trim(),
+                age: ageController.text.trim(),
+                height: heightController.text.trim(),
+                weight: weightController.text.trim(),
+                waist: waistController.text.trim(),
+                neck: neckController.text.trim(),
+                hip: hipController.text.trim(),
+                gender: genderController.text.trim(),
+              ),
+        ),
+      );
+    } on FirebaseAuthException catch (e) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.message ?? "Bir hata oluştu")));
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -31,13 +103,13 @@ class _SignPageState extends State<SignPage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.blue.shade800),
+          icon: MyAppIcons.backIcon,
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
         title: Text(
-          'Kayıt Ol',
+          AppLocalizations.of(context)!.signUp,
           style: TextStyle(
             color: Colors.blue.shade800,
             fontWeight: FontWeight.bold,
@@ -61,7 +133,11 @@ class _SignPageState extends State<SignPage> {
                 controller: emailController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                  hintText: 'E-posta',
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: MyAppColors.primaryColor),
+                  ),
+                  hintText: AppLocalizations.of(context)!.email,
                   hintStyle: TextStyle(color: Colors.grey.shade500),
                   prefixIcon: Icon(
                     Icons.email_outlined,
@@ -90,12 +166,15 @@ class _SignPageState extends State<SignPage> {
                     child: TextField(
                       controller: nameController,
                       decoration: InputDecoration(
-                        hintText: 'Ad',
-                        hintStyle: TextStyle(color: Colors.grey.shade500),
-                        prefixIcon: Icon(
-                          Icons.person_outline,
-                          color: Colors.blue.shade800,
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(
+                            color: MyAppColors.primaryColor,
+                          ),
                         ),
+                        hintText: AppLocalizations.of(context)!.name,
+                        hintStyle: TextStyle(color: Colors.grey.shade500),
+                        prefixIcon: MyAppIcons.profileIcon,
                         border: InputBorder.none,
                         contentPadding: const EdgeInsets.symmetric(
                           horizontal: 16,
@@ -116,12 +195,15 @@ class _SignPageState extends State<SignPage> {
                     child: TextField(
                       controller: surnameController,
                       decoration: InputDecoration(
-                        hintText: 'Soyad',
-                        hintStyle: TextStyle(color: Colors.grey.shade500),
-                        prefixIcon: Icon(
-                          Icons.person_outline,
-                          color: Colors.blue.shade800,
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(
+                            color: MyAppColors.primaryColor,
+                          ),
                         ),
+                        hintText: AppLocalizations.of(context)!.surname,
+                        hintStyle: TextStyle(color: Colors.grey.shade500),
+                        prefixIcon: MyAppIcons.profileIcon,
                         border: InputBorder.none,
                         contentPadding: const EdgeInsets.symmetric(
                           horizontal: 16,
@@ -146,7 +228,11 @@ class _SignPageState extends State<SignPage> {
                 controller: passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
-                  hintText: 'Şifre',
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: MyAppColors.primaryColor),
+                  ),
+                  hintText: AppLocalizations.of(context)!.password,
                   hintStyle: TextStyle(color: Colors.grey.shade500),
                   prefixIcon: Icon(
                     Icons.lock_outline,
@@ -173,7 +259,11 @@ class _SignPageState extends State<SignPage> {
                 controller: confirmPasswordController,
                 obscureText: true,
                 decoration: InputDecoration(
-                  hintText: 'Şifre Tekrar',
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: MyAppColors.primaryColor),
+                  ),
+                  hintText: AppLocalizations.of(context)!.reenterPassword,
                   hintStyle: TextStyle(color: Colors.grey.shade500),
                   prefixIcon: Icon(
                     Icons.lock_outline,
@@ -203,7 +293,13 @@ class _SignPageState extends State<SignPage> {
                       controller: ageController,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
-                        hintText: 'Yaş',
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(
+                            color: MyAppColors.primaryColor,
+                          ),
+                        ),
+                        hintText: AppLocalizations.of(context)!.age,
                         hintStyle: TextStyle(color: Colors.grey.shade500),
                         prefixIcon: Icon(
                           Icons.calendar_today,
@@ -230,7 +326,14 @@ class _SignPageState extends State<SignPage> {
                       controller: heightController,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
-                        hintText: 'Boy (cm)',
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(
+                            color: MyAppColors.primaryColor,
+                          ),
+                        ),
+                        hintText:
+                            AppLocalizations.of(context)!.height + " (cm)",
                         hintStyle: TextStyle(color: Colors.grey.shade500),
                         prefixIcon: Icon(
                           Icons.height,
@@ -263,7 +366,14 @@ class _SignPageState extends State<SignPage> {
                       controller: weightController,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
-                        hintText: 'Kilo (kg)',
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(
+                            color: MyAppColors.primaryColor,
+                          ),
+                        ),
+                        hintText:
+                            AppLocalizations.of(context)!.weight + " (kg)",
                         hintStyle: TextStyle(color: Colors.grey.shade500),
                         prefixIcon: Icon(
                           Icons.monitor_weight_outlined,
@@ -290,6 +400,12 @@ class _SignPageState extends State<SignPage> {
                       controller: waistController,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(
+                            color: MyAppColors.primaryColor,
+                          ),
+                        ),
                         hintText: 'Bel (cm)',
                         hintStyle: TextStyle(color: Colors.grey.shade500),
                         prefixIcon: Icon(
@@ -323,6 +439,12 @@ class _SignPageState extends State<SignPage> {
                       controller: neckController,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(
+                            color: MyAppColors.primaryColor,
+                          ),
+                        ),
                         hintText: 'Boyun (cm)',
                         hintStyle: TextStyle(color: Colors.grey.shade500),
                         prefixIcon: Icon(
@@ -350,6 +472,12 @@ class _SignPageState extends State<SignPage> {
                       controller: hipController,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(
+                            color: MyAppColors.primaryColor,
+                          ),
+                        ),
                         hintText: 'Kalça (cm)',
                         hintStyle: TextStyle(color: Colors.grey.shade500),
                         prefixIcon: Icon(
@@ -374,7 +502,11 @@ class _SignPageState extends State<SignPage> {
               value:
                   genderController.text.isEmpty ? null : genderController.text,
               decoration: InputDecoration(
-                hintText: 'Cinsiyet',
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(color: MyAppColors.primaryColor),
+                ),
+                hintText: AppLocalizations.of(context)!.gender,
                 hintStyle: TextStyle(color: Colors.grey.shade500),
                 prefixIcon: Icon(
                   Icons.people_outline,
@@ -392,7 +524,10 @@ class _SignPageState extends State<SignPage> {
                 ),
               ),
               items:
-                  ['Erkek', 'Kadın'].map((String value) {
+                  [
+                    AppLocalizations.of(context)!.male,
+                    AppLocalizations.of(context)!.female,
+                  ].map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),
@@ -409,7 +544,7 @@ class _SignPageState extends State<SignPage> {
             // Kayıt Ol butonu
             ElevatedButton(
               onPressed: () {
-                // Kayıt işlemi burada yapılacak
+                _signUp();
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue.shade800,
@@ -418,8 +553,8 @@ class _SignPageState extends State<SignPage> {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              child: const Text(
-                'Kayıt Ol',
+              child: Text(
+                AppLocalizations.of(context)!.signUp,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16,
@@ -434,18 +569,18 @@ class _SignPageState extends State<SignPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Hesabınız var mı?',
+                  AppLocalizations.of(context)!.alreadyhaveanaccount,
                   style: TextStyle(color: Colors.grey.shade600, fontSize: 16),
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => LoginPage()),
                     );
                   },
                   child: Text(
-                    'Giriş Yap',
+                    AppLocalizations.of(context)!.login,
                     style: TextStyle(
                       color: Colors.blue.shade800,
                       fontSize: 16,

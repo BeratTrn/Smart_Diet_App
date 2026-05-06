@@ -1,0 +1,646 @@
+[
+  {
+    "name": "Köfte",
+    "calories": 138.2,
+    "protein": 12.4,
+    "carbs": 39.5,
+    "fat": 8.7
+  },
+  {
+    "name": "Tavuk Izgara",
+    "calories": 88.8,
+    "protein": 19.7,
+    "carbs": 10.7,
+    "fat": 22.3
+  },
+  {
+    "name": "Balık Buğulama",
+    "calories": 249.8,
+    "protein": 26.2,
+    "carbs": 16.2,
+    "fat": 22.1
+  },
+  {
+    "name": "Et Sote",
+    "calories": 116.8,
+    "protein": 29.5,
+    "carbs": 43.8,
+    "fat": 13.4
+  },
+  {
+    "name": "Kuru Fasulye",
+    "calories": 298.9,
+    "protein": 15.6,
+    "carbs": 48.3,
+    "fat": 13.3
+  },
+  {
+    "name": "Mercimek Çorbası",
+    "calories": 81.6,
+    "protein": 11.7,
+    "carbs": 34.8,
+    "fat": 26.6
+  },
+  {
+    "name": "Sebze Graten",
+    "calories": 154.2,
+    "protein": 21.6,
+    "carbs": 5.1,
+    "fat": 23.2
+  },
+  {
+    "name": "Zeytinyağlı Enginar",
+    "calories": 34.3,
+    "protein": 13.6,
+    "carbs": 29.8,
+    "fat": 2.8
+  },
+  {
+    "name": "Ispanak",
+    "calories": 280.7,
+    "protein": 15.8,
+    "carbs": 46.9,
+    "fat": 7.8
+  },
+  {
+    "name": "Pırasa",
+    "calories": 323.2,
+    "protein": 29.0,
+    "carbs": 22.9,
+    "fat": 21.1
+  },
+  {
+    "name": "Karnabahar",
+    "calories": 39.0,
+    "protein": 0.5,
+    "carbs": 51.7,
+    "fat": 1.7
+  },
+  {
+    "name": "Domates",
+    "calories": 72.1,
+    "protein": 26.1,
+    "carbs": 25.5,
+    "fat": 6.5
+  },
+  {
+    "name": "Salatalık",
+    "calories": 336.6,
+    "protein": 16.8,
+    "carbs": 54.6,
+    "fat": 7.1
+  },
+  {
+    "name": "Havuç",
+    "calories": 90.9,
+    "protein": 18.7,
+    "carbs": 31.6,
+    "fat": 2.7
+  },
+  {
+    "name": "Brokoli",
+    "calories": 313.1,
+    "protein": 14.8,
+    "carbs": 30.0,
+    "fat": 24.5
+  },
+  {
+    "name": "Elma",
+    "calories": 279.1,
+    "protein": 1.1,
+    "carbs": 30.9,
+    "fat": 16.3
+  },
+  {
+    "name": "Armut",
+    "calories": 289.7,
+    "protein": 9.6,
+    "carbs": 28.0,
+    "fat": 29.2
+  },
+  {
+    "name": "Muz",
+    "calories": 95.2,
+    "protein": 9.8,
+    "carbs": 12.6,
+    "fat": 14.3
+  },
+  {
+    "name": "Portakal",
+    "calories": 231.2,
+    "protein": 13.4,
+    "carbs": 21.5,
+    "fat": 10.3
+  },
+  {
+    "name": "Karpuz",
+    "calories": 194.4,
+    "protein": 24.5,
+    "carbs": 50.8,
+    "fat": 6.0
+  },
+  {
+    "name": "Çilek",
+    "calories": 148.3,
+    "protein": 17.4,
+    "carbs": 4.9,
+    "fat": 22.3
+  },
+  {
+    "name": "Kiraz",
+    "calories": 254.5,
+    "protein": 6.4,
+    "carbs": 46.6,
+    "fat": 5.6
+  },
+  {
+    "name": "Üzüm",
+    "calories": 342.0,
+    "protein": 13.0,
+    "carbs": 15.7,
+    "fat": 9.3
+  },
+  {
+    "name": "Kavun",
+    "calories": 136.7,
+    "protein": 5.4,
+    "carbs": 6.0,
+    "fat": 10.5
+  },
+  {
+    "name": "Yumurta",
+    "calories": 180.9,
+    "protein": 15.9,
+    "carbs": 42.8,
+    "fat": 25.9
+  },
+  {
+    "name": "Yoğurt",
+    "calories": 211.5,
+    "protein": 8.1,
+    "carbs": 24.2,
+    "fat": 14.3
+  },
+  {
+    "name": "Süt",
+    "calories": 297.7,
+    "protein": 19.8,
+    "carbs": 23.9,
+    "fat": 28.7
+  },
+  {
+    "name": "Ayran",
+    "calories": 169.2,
+    "protein": 18.1,
+    "carbs": 39.2,
+    "fat": 5.8
+  },
+  {
+    "name": "Peynir",
+    "calories": 274.0,
+    "protein": 26.1,
+    "carbs": 21.8,
+    "fat": 14.6
+  },
+  {
+    "name": "Ekmek",
+    "calories": 243.2,
+    "protein": 24.5,
+    "carbs": 15.6,
+    "fat": 3.8
+  },
+  {
+    "name": "Pirinç Pilavı",
+    "calories": 67.1,
+    "protein": 13.3,
+    "carbs": 37.3,
+    "fat": 1.0
+  },
+  {
+    "name": "Bulgur Pilavı",
+    "calories": 190.0,
+    "protein": 17.3,
+    "carbs": 48.8,
+    "fat": 14.6
+  },
+  {
+    "name": "Makarna",
+    "calories": 225.3,
+    "protein": 5.6,
+    "carbs": 23.2,
+    "fat": 23.4
+  },
+  {
+    "name": "Lazanya",
+    "calories": 258.2,
+    "protein": 5.8,
+    "carbs": 38.6,
+    "fat": 25.8
+  },
+  {
+    "name": "Pizza",
+    "calories": 283.9,
+    "protein": 22.1,
+    "carbs": 54.2,
+    "fat": 25.3
+  },
+  {
+    "name": "Hamburger",
+    "calories": 94.2,
+    "protein": 9.3,
+    "carbs": 30.6,
+    "fat": 25.4
+  },
+  {
+    "name": "Patates Kızartması",
+    "calories": 275.5,
+    "protein": 22.5,
+    "carbs": 7.0,
+    "fat": 28.0
+  },
+  {
+    "name": "Cips",
+    "calories": 128.2,
+    "protein": 14.9,
+    "carbs": 31.5,
+    "fat": 1.1
+  },
+  {
+    "name": "Bisküvi",
+    "calories": 257.1,
+    "protein": 9.2,
+    "carbs": 26.5,
+    "fat": 23.2
+  },
+  {
+    "name": "Çikolata",
+    "calories": 73.4,
+    "protein": 15.6,
+    "carbs": 15.3,
+    "fat": 18.3
+  },
+  {
+    "name": "Fındık",
+    "calories": 209.9,
+    "protein": 3.7,
+    "carbs": 39.7,
+    "fat": 15.7
+  },
+  {
+    "name": "Badem",
+    "calories": 254.7,
+    "protein": 23.7,
+    "carbs": 43.3,
+    "fat": 29.2
+  },
+  {
+    "name": "Ceviz",
+    "calories": 127.0,
+    "protein": 6.1,
+    "carbs": 12.4,
+    "fat": 29.6
+  },
+  {
+    "name": "Kuru Üzüm",
+    "calories": 290.0,
+    "protein": 2.6,
+    "carbs": 41.5,
+    "fat": 23.8
+  },
+  {
+    "name": "Kuru Kayısı",
+    "calories": 229.0,
+    "protein": 27.8,
+    "carbs": 29.1,
+    "fat": 24.8
+  },
+  {
+    "name": "Hurmalı Tatlı",
+    "calories": 140.6,
+    "protein": 19.7,
+    "carbs": 22.9,
+    "fat": 6.8
+  },
+  {
+    "name": "Sütlaç",
+    "calories": 131.5,
+    "protein": 24.1,
+    "carbs": 38.2,
+    "fat": 26.9
+  },
+  {
+    "name": "Kazandibi",
+    "calories": 253.3,
+    "protein": 2.8,
+    "carbs": 15.5,
+    "fat": 19.6
+  },
+  {
+    "name": "Baklava",
+    "calories": 296.0,
+    "protein": 14.7,
+    "carbs": 32.5,
+    "fat": 18.7
+  },
+  {
+    "name": "Künefe",
+    "calories": 182.5,
+    "protein": 26.3,
+    "carbs": 49.1,
+    "fat": 19.2
+  },
+  {
+    "name": "Kola",
+    "calories": 329.3,
+    "protein": 3.7,
+    "carbs": 58.3,
+    "fat": 3.2
+  },
+  {
+    "name": "Fanta",
+    "calories": 74.8,
+    "protein": 10.2,
+    "carbs": 18.1,
+    "fat": 25.7
+  },
+  {
+    "name": "Meyve Suyu",
+    "calories": 306.4,
+    "protein": 4.7,
+    "carbs": 46.7,
+    "fat": 17.6
+  },
+  {
+    "name": "Şalgam",
+    "calories": 95.7,
+    "protein": 25.3,
+    "carbs": 37.7,
+    "fat": 11.5
+  },
+  {
+    "name": "Su",
+    "calories": 185.3,
+    "protein": 19.8,
+    "carbs": 21.4,
+    "fat": 22.3
+  },
+  {
+    "name": "Maden Suyu",
+    "calories": 110.2,
+    "protein": 23.8,
+    "carbs": 58.4,
+    "fat": 5.2
+  },
+  {
+    "name": "Türk Kahvesi",
+    "calories": 105.4,
+    "protein": 14.7,
+    "carbs": 3.1,
+    "fat": 24.8
+  },
+  {
+    "name": "Çay",
+    "calories": 180.7,
+    "protein": 12.5,
+    "carbs": 15.2,
+    "fat": 25.6
+  },
+  {
+    "name": "Espresso",
+    "calories": 144.9,
+    "protein": 13.0,
+    "carbs": 2.3,
+    "fat": 0.2
+  },
+  {
+    "name": "Latte",
+    "calories": 187.9,
+    "protein": 25.7,
+    "carbs": 47.4,
+    "fat": 17.0
+  },
+  {
+    "name": "Yeşil Çay",
+    "calories": 242.2,
+    "protein": 7.5,
+    "carbs": 20.4,
+    "fat": 14.1
+  },
+  {
+    "name": "Bitki Çayı",
+    "calories": 128.9,
+    "protein": 4.9,
+    "carbs": 32.9,
+    "fat": 27.9
+  },
+  {
+    "name": "Smoothie",
+    "calories": 289.7,
+    "protein": 2.2,
+    "carbs": 13.8,
+    "fat": 22.7
+  },
+  {
+    "name": "Protein Shake",
+    "calories": 192.5,
+    "protein": 28.7,
+    "carbs": 8.9,
+    "fat": 4.5
+  },
+  {
+    "name": "Tavuklu Salata",
+    "calories": 80.2,
+    "protein": 1.3,
+    "carbs": 34.6,
+    "fat": 0.7
+  },
+  {
+    "name": "Ton Balıklı Salata",
+    "calories": 139.3,
+    "protein": 9.4,
+    "carbs": 6.0,
+    "fat": 22.7
+  },
+  {
+    "name": "Yoğurtlu Kabak",
+    "calories": 272.1,
+    "protein": 26.6,
+    "carbs": 3.9,
+    "fat": 20.1
+  },
+  {
+    "name": "Menemen",
+    "calories": 246.0,
+    "protein": 15.5,
+    "carbs": 56.3,
+    "fat": 7.7
+  },
+  {
+    "name": "Sucuklu Yumurta",
+    "calories": 260.4,
+    "protein": 16.5,
+    "carbs": 59.1,
+    "fat": 9.6
+  },
+  {
+    "name": "Omlet",
+    "calories": 249.3,
+    "protein": 0.8,
+    "carbs": 9.3,
+    "fat": 23.0
+  },
+  {
+    "name": "Granola",
+    "calories": 209.2,
+    "protein": 20.2,
+    "carbs": 57.2,
+    "fat": 11.1
+  },
+  {
+    "name": "Yulaf Ezmesi",
+    "calories": 286.3,
+    "protein": 0.5,
+    "carbs": 59.6,
+    "fat": 22.9
+  },
+  {
+    "name": "Reçel",
+    "calories": 303.5,
+    "protein": 11.4,
+    "carbs": 33.6,
+    "fat": 3.6
+  },
+  {
+    "name": "Bal",
+    "calories": 317.3,
+    "protein": 5.4,
+    "carbs": 46.0,
+    "fat": 7.1
+  },
+  {
+    "name": "Tahin",
+    "calories": 182.0,
+    "protein": 26.7,
+    "carbs": 33.4,
+    "fat": 28.1
+  },
+  {
+    "name": "Pekmez",
+    "calories": 327.3,
+    "protein": 24.2,
+    "carbs": 39.8,
+    "fat": 21.2
+  },
+  {
+    "name": "Zeytin",
+    "calories": 293.6,
+    "protein": 10.9,
+    "carbs": 25.7,
+    "fat": 18.3
+  },
+  {
+    "name": "Avokado",
+    "calories": 183.5,
+    "protein": 24.8,
+    "carbs": 35.8,
+    "fat": 11.7
+  },
+  {
+    "name": "Tam Buğday Ekmeği",
+    "calories": 238.5,
+    "protein": 10.7,
+    "carbs": 50.4,
+    "fat": 23.2
+  },
+  {
+    "name": "Kepekli Makarna",
+    "calories": 53.3,
+    "protein": 16.4,
+    "carbs": 20.2,
+    "fat": 25.3
+  },
+  {
+    "name": "Kinoa",
+    "calories": 77.6,
+    "protein": 14.2,
+    "carbs": 12.8,
+    "fat": 1.9
+  },
+  {
+    "name": "Nohut",
+    "calories": 138.8,
+    "protein": 29.6,
+    "carbs": 23.6,
+    "fat": 19.9
+  },
+  {
+    "name": "Barbunya",
+    "calories": 177.8,
+    "protein": 16.7,
+    "carbs": 50.3,
+    "fat": 18.2
+  },
+  {
+    "name": "Limon",
+    "calories": 98.6,
+    "protein": 13.1,
+    "carbs": 37.1,
+    "fat": 24.4
+  },
+  {
+    "name": "Maydanoz",
+    "calories": 349.2,
+    "protein": 15.2,
+    "carbs": 4.3,
+    "fat": 5.2
+  },
+  {
+    "name": "Dereotu",
+    "calories": 302.9,
+    "protein": 23.2,
+    "carbs": 57.6,
+    "fat": 8.8
+  },
+  {
+    "name": "Roka",
+    "calories": 159.3,
+    "protein": 8.5,
+    "carbs": 33.1,
+    "fat": 20.2
+  },
+  {
+    "name": "Marul",
+    "calories": 44.7,
+    "protein": 11.4,
+    "carbs": 36.0,
+    "fat": 2.2
+  },
+  {
+    "name": "Lahana",
+    "calories": 192.2,
+    "protein": 12.7,
+    "carbs": 23.1,
+    "fat": 1.4
+  },
+  {
+    "name": "Turşu",
+    "calories": 213.5,
+    "protein": 11.3,
+    "carbs": 26.1,
+    "fat": 15.1
+  },
+  {
+    "name": "Mantar",
+    "calories": 40.1,
+    "protein": 23.3,
+    "carbs": 21.5,
+    "fat": 2.6
+  },
+  {
+    "name": "Bezelye",
+    "calories": 82.9,
+    "protein": 7.6,
+    "carbs": 54.3,
+    "fat": 27.7
+  }
+]

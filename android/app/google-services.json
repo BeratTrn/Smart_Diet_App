@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "465728583379",
+    "project_id": "smart-diet-app-fdcca",
+    "storage_bucket": "smart-diet-app-fdcca.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:465728583379:android:d10e4a50010c952692c626",
+        "android_client_info": {
+          "package_name": "com.example.flutter_smart_diet_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBexpOvhLOoUzkwNsDNABvXogKHh0aE1oM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
